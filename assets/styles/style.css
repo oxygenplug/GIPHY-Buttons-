@@ -1,0 +1,17 @@
+body {
+    background: #4a4a4a;
+}
+
+#btnCol {
+    background-color: #b5b5b5;
+}
+
+
+.row {
+    margin: 15px;
+    padding: 10px;
+}
+
+button {
+    margin: 4px;
+}
