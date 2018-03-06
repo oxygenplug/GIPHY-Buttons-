@@ -18,7 +18,7 @@ $(document).ready(function () {
     function GifData(gifUrl, stillUrl) {
 
         this.gifUrl = gifUrl;
-        this.stillUrl = stillUrl
+        this.stillUrl = stillUrl;
     }
 
     var gifDatas = [];
@@ -37,19 +37,24 @@ $(document).ready(function () {
         })
             .then(function (response) {
                 console.log(response)
-                
+
                 var gifDatas = [];
 
                 for (var index in response.data) {
                     var images = response.data[index].images;
                     var gifData = new GifData(images["original"].url, images["480w_still"].url);
                     gifDatas.push(gifData)
+                    displayGifs();
+
+
                 };
 
                 function displayGifs () {
                     for(var i = 0; i < gifDatas.length; i++) {
-                        $("#gifCol").prepend("<h1>hello</h1>")
-                        $("img").attr("src", gifDatas.gifUrl)
+                        var gu = gifDatas[i].gifUrl;
+                            $("#gifCol").prepend("<img src='" + gifDatas.gifUrl + "'>" );
+
+
                     }
                 };
 
