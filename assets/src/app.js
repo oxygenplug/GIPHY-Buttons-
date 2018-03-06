@@ -1,8 +1,10 @@
 var topics = ["kitten", "otter", "hamster", "tiger", "sea lion", "deer", "cow", "puppy", "rhino", "red panda", "bear", "fox"];
+
 var limit;
 
 
 $(document).ready(function () {
+
     function createButtons() {
         for (var i = 0; i < topics.length; i++) {
             console.log("hi")
@@ -10,8 +12,16 @@ $(document).ready(function () {
         }
 
     };
+
     createButtons();
 
+    function GifData(gifUrl, stillUrl) {
+
+        this.gifUrl = gifUrl;
+        this.stillUrl = stillUrl
+    }
+
+    var gifDatas = [];
 
     $("button").on("click", function () {
 
@@ -27,12 +37,21 @@ $(document).ready(function () {
         })
             .then(function (response) {
                 console.log(response)
+                
+                var gifDatas = [];
 
-                for (var i = 0; i < response.data.length; i++) {
-                    $("#gifCol").prepend("<img src='"+response.data[i].images.fixed_height_still+"'>")
+                for (var index in response.data) {
+                    var images = response.data[index].images;
+                    var gifData = new GifData(images["original"].url, images["480w_still"].url);
+                    gifDatas.push(gifData)
                 };
-              
 
+                function displayGifs () {
+                    for(var i = 0; i < gifDatas.length; i++) {
+                        $("#gifCol").prepend("<h1>hello</h1>")
+                        $("img").attr("src", gifDatas.gifUrl)
+                    }
+                };
 
 
 
