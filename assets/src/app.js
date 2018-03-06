@@ -62,7 +62,7 @@ $(document).ready(function () {
                         console.log(gu);
                         var gifContainer = $("#gifCol");
                         gifContainer.prepend("<img src='" + gu + "'>");
-                        gifContainer.append("<br>" + "<p>" + "Rating: " + gifDatas[i].rating + "</p>");
+                        gifContainer.prepend("<br>" + "<p>" + "Rating: " + gifDatas[i].rating + "</p>");
                         
 
 
