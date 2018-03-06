@@ -4,7 +4,7 @@ var limit;
 
 
 $(document).ready(function () {
-
+    // creates a button for each string in the array
     function createButtons() {
         for (var i = 0; i < topics.length; i++) {
             console.log("hi")
@@ -14,21 +14,21 @@ $(document).ready(function () {
     };
 
     createButtons();
-
+    // constructor to pull gif data from the returned JSON obj
     function GifData(gifUrl, stillUrl) {
 
         this.gifUrl = gifUrl;
         this.stillUrl = stillUrl;
     }
-
+    // array to store the gif data values
     var gifDatas = [];
 
     $("button").on("click", function () {
-
+        
         var q = $(this).text();
         console.log(q);
         var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=h2N79rtezvgGLtt93IensMlolfBA38ED&q=" + q + "&limit=10&offset=0&rating=G&lang=en";
-
+        //ajax call
         $.ajax({
 
             url: queryURL,
@@ -39,11 +39,15 @@ $(document).ready(function () {
                 console.log(response)
 
                 var gifDatas = [];
-
+                // goes through each index in response.data
                 for (var index in response.data) {
+                    //sets images to the images index in the data array
                     var images = response.data[index].images;
+                    // sets the gifData array a new GifData object which pulls the url for the gif and the still image
                     var gifData = new GifData(images["original"].url, images["480w_still"].url);
+                    //pushes gifData to the gifDatas array
                     gifDatas.push(gifData)
+                    // runs the function to display gifs
                     displayGifs();
 
 
