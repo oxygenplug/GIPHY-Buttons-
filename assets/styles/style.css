@@ -15,3 +15,8 @@ body {
 button {
     margin: 1px;
 }
+
+p {
+    color: white;
+    size: 24px;
+}

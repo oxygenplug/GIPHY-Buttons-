@@ -15,10 +15,11 @@ $(document).ready(function () {
 
     createButtons();
     // constructor to pull gif data from the returned JSON obj
-    function GifData(gifUrl, stillUrl) {
+    function GifData(gifUrl, stillUrl, rating) {
 
         this.gifUrl = gifUrl;
         this.stillUrl = stillUrl;
+        this.rating = rating;
     }
     // array to store the gif data values
     var gifDatas = [];
@@ -44,7 +45,8 @@ $(document).ready(function () {
                     //sets images to the images index in the data array
                     var images = response.data[index].images;
                     // sets the gifData array a new GifData object which pulls the url for the gif and the still image
-                    var gifData = new GifData(images["original"].url, images["480w_still"].url);
+                    var propName="original"
+                    var gifData = new GifData(images[propName].url, images["480w_still"].url, response.data[index].rating);
                     //pushes gifData to the gifDatas array
                     gifDatas.push(gifData)
                     // runs the function to display gifs
@@ -56,12 +58,12 @@ $(document).ready(function () {
                 function displayGifs() {
                     $("#gifCol").empty();
                     for (var i = 0; i < gifDatas.length; i++) {
-
-                        // for (var j = 0; j < gifDatas[i].gifUrl.length; j++) {
                         var gu = gifDatas[i].gifUrl;
                         console.log(gu);
-                        $("#gifCol").prepend("<img src='" + gu + "'>");
-                        //     }
+                        var gifContainer = $("#gifCol");
+                        gifContainer.prepend("<img src='" + gu + "'>");
+                        gifContainer.append("<br>" + "<p>" + "Rating: " + gifDatas[i].rating + "</p>");
+                        
 
 
 
