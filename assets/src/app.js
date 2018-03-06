@@ -24,7 +24,7 @@ $(document).ready(function () {
     var gifDatas = [];
 
     $("button").on("click", function () {
-        
+
         var q = $(this).text();
         console.log(q);
         var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=h2N79rtezvgGLtt93IensMlolfBA38ED&q=" + q + "&limit=10&offset=0&rating=G&lang=en";
@@ -53,10 +53,13 @@ $(document).ready(function () {
 
                 };
 
-                function displayGifs () {
-                    for(var i = 0; i < gifDatas.length; i++) {
-                        var gu = gifDatas[i].gifUrl;
-                            $("#gifCol").prepend("<img src='" + gifDatas.gifUrl + "'>" );
+                function displayGifs() {
+                   for (var i = 0; i < gifDatas.length; i++) {
+                       // for (var j = 0; j < gifDatas[i].gifUrl.length; j++) {
+                            var gu = gifDatas[i].gifUrl;
+                            $("#gifCol").prepend("<img src='" + gifDatas.gifUrl + "'>");
+                   //     }
+
 
 
                     }
