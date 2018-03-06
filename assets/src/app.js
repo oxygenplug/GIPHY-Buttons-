@@ -27,7 +27,7 @@ $(document).ready(function () {
 
         var q = $(this).text();
         console.log(q);
-        var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=h2N79rtezvgGLtt93IensMlolfBA38ED&q=" + q + "&limit=4&offset=0&rating=G&lang=en";
+        var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=h2N79rtezvgGLtt93IensMlolfBA38ED&q=" + q + "&limit=10&offset=0&rating=G&lang=en";
         //ajax call
         $.ajax({
 
@@ -54,11 +54,14 @@ $(document).ready(function () {
                 };
 
                 function displayGifs() {
-                   for (var i = 0; i < gifDatas.length; i++) {
-                       // for (var j = 0; j < gifDatas[i].gifUrl.length; j++) {
-                            var gu = gifDatas[i].gifUrl;
-                            $("#gifCol").prepend("<img src='" + gifDatas.gifUrl + "'>");
-                   //     }
+                    $("#gifCol").empty();
+                    for (var i = 0; i < gifDatas.length; i++) {
+
+                        // for (var j = 0; j < gifDatas[i].gifUrl.length; j++) {
+                        var gu = gifDatas[i].gifUrl;
+                        console.log(gu);
+                        $("#gifCol").prepend("<img src='" + gu + "'>");
+                        //     }
 
 
 
