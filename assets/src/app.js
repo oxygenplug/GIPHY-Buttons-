@@ -27,7 +27,7 @@ $(document).ready(function () {
 
         var q = $(this).text();
         console.log(q);
-        var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=h2N79rtezvgGLtt93IensMlolfBA38ED&q=" + q + "&limit=10&offset=0&rating=G&lang=en";
+        var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=h2N79rtezvgGLtt93IensMlolfBA38ED&q=" + q + "&limit=4&offset=0&rating=G&lang=en";
         //ajax call
         $.ajax({
 
