@@ -45,8 +45,9 @@ $(document).ready(function () {
                     //sets images to the images index in the data array
                     var images = response.data[index].images;
                     // sets the gifData array a new GifData object which pulls the url for the gif and the still image
-                    var propName="original"
-                    var gifData = new GifData(images[propName].url, images["480w_still"].url, response.data[index].rating);
+                    var gifName="original";
+                    var stillName="480w_still";
+                    var gifData = new GifData(images[gifName].url, images[stillName].url, response.data[index].rating);
                     //pushes gifData to the gifDatas array
                     gifDatas.push(gifData)
                     // runs the function to display gifs
@@ -63,37 +64,26 @@ $(document).ready(function () {
                         var gifContainer = $("#gifCol");
                         gifContainer.prepend("<img src='" + gu + "'>");
                         gifContainer.prepend("<br>" + "<p>" + "Rating: " + gifDatas[i].rating + "</p>");
-                        
-
-
-
                     }
                 };
-
-
-
-
-                function pausePlay() {
-                    $("button").on("click", function () {
-                        // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
-                        var state = $(this).attr("data-state");
-                        // If the clicked image's state is still, update its src attribute to what its data-animate value is.
-                        // Then, set the image's data-state to animate
-                        // Else set src to the data-still value
-                        if (state === "still") {
-                            $(this).attr("src", $(this).attr("data-animate"));
-                            $(this).attr("data-state", "animate");
-                        } else {
-                            $(this).attr("src", $(this).attr("data-still"));
-                            $(this).attr("data-state", "still");
-                        }
-                    });
-
-                }
 
             });
 
     });
 
+
+
+    $("img").on("click", function() {
+        console.log("hi");
+        function playPause() {
+            isGif = true;
+            if(isGif){
+                $("img").attr("src", gifDatas.stillUrl);
+            }
+    };
+
+
+    });
+    
 
 });
