@@ -78,7 +78,7 @@ $(document).ready(function () {
         function playPause() {
             isGif = true;
             if(isGif){
-                $("img").attr("src", gifDatas.stillUrl);
+                $("img ").attr("src", gifDatas.stillUrl);
             }
     };
 
