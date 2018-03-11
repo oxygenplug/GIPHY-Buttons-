@@ -45,8 +45,8 @@ $(document).ready(function () {
                     //sets images to the images index in the data array
                     var images = response.data[index].images;
                     // sets the gifData array a new GifData object which pulls the url for the gif and the still image
-                    var gifName="original";
-                    var stillName="480w_still";
+                    var gifName = "original";
+                    var stillName = "480w_still";
                     var gifData = new GifData(images[gifName].url, images[stillName].url, response.data[index].rating);
                     //pushes gifData to the gifDatas array
                     gifDatas.push(gifData)
@@ -73,17 +73,56 @@ $(document).ready(function () {
 
 
 
-    $("img").on("click", function() {
+    $("img").on("click", function () {
         console.log("hi");
         function playPause() {
             isGif = true;
-            if(isGif){
+            if (isGif) {
                 $("img ").attr("src", gifDatas.stillUrl);
             }
-    };
+        };
 
 
     });
-    
+
+    $("#searchBtn").on("click", function () {
+        z = $("#userInput").val();
+        var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=h2N79rtezvgGLtt93IensMlolfBA38ED&q=" + z + "&limit=10&offset=0&rating=G&lang=en";
+        $.ajax({
+
+            url: queryURL,
+            method: "GET",
+
+        })
+            .then(function (response) {
+                var gifDatas = [];
+                // goes through each index in response.data
+                for (var index in response.data) {
+                    //sets images to the images index in the data array
+                    var images = response.data[index].images;
+                    // sets the gifData array a new GifData object which pulls the url for the gif and the still image
+                    var gifName = "original";
+                    var stillName = "480w_still";
+                    var gifData = new GifData(images[gifName].url, images[stillName].url, response.data[index].rating);
+                    //pushes gifData to the gifDatas array
+                    gifDatas.push(gifData)
+                    // runs the function to display gifs
+                    function displayGifs() {
+                        $("#gifCol").empty();
+                        for (var i = 0; i < gifDatas.length; i++) {
+                            var gu = gifDatas[i].gifUrl;
+                            console.log(gu);
+                            var gifContainer = $("#gifCol");
+                            gifContainer.prepend("<img src='" + gu + "'>");
+                            gifContainer.prepend("<br>" + "<p>" + "Rating: " + gifDatas[i].rating + "</p>");
+                        }
+                    };
+                    displayGifs();
+                }
+            });
+
+
+    });
+
 
 });
